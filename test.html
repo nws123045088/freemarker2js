@@ -5,12 +5,13 @@
 		<script>
 		
 			window.onload=function(){
-				var str = '<#assign f="2"><#if f gt 0>${f} > 0<#else>${f} < 0 </#if><#list animals as being><td>${being.name}------${being.price}${"xxxxxx"+being.price+"fwefwef"}<td></#list>'
+				var str = '<#list animals as animal>${animal.name}------${animal.price}<#list animal.subarr as sub>${sub.title}</#list></br></#list>'
 			let template = freeMarker(str,true);
 
-
-//console.log(typeof(template))
-			console.log(template({animals:[{name:'1111',price:'2222'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'},{name:'2222',price:'3333'}]}));
+			var data = {
+				animals:[{name:"1111",price:1111,subarr:[{title:"subarr1"}]},{name:"2222",price:2222,subarr:[{title:"subarr2"}]}]
+			};
+			document.write(template(data));
 			}
 		</script>
 	</head>
